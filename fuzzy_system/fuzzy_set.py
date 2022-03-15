@@ -1,5 +1,5 @@
 from typing import Any
-from numpy.typing import NDArray
+from numpy.typing import NDArray as NDArray
 import numpy as np
 import matplotlib.pyplot as plt
 
