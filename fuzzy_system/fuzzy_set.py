@@ -81,9 +81,18 @@ class FuzzySet:
         c = t1fs.adjust_domain_val(c)
         d = t1fs.adjust_domain_val(d)
         #
-        t1fs.dom = None
+        #t1fs.dom = None
         # Write your code below
-
+        for i in range(len(t1fs.domain)-1):
+            if i<a or i>d:
+                t1fs.dom[i]=0
+            elif i>=a and i<=b:
+                t1fs.dom[i]=(i-a)/(b-a)
+            elif i>=c and i<=d:
+                t1fs.dom[i]=(d-i)/(d-c) 
+            else:
+                t1fs.dom[i]=1           
+              
         return t1fs
 
     @classmethod
@@ -114,8 +123,17 @@ class FuzzySet:
         m = t1fs.adjust_domain_val(m)
         b = t1fs.adjust_domain_val(b)
         #
-        t1fs.dom = None
+        #t1fs.dom = None
         # write your code below
+        for i in range(len(t1fs.domain)-1):
+            if i<=a:
+                t1fs.dom[i]=0
+            elif i>a and i<=m:
+                t1fs.dom[i]=(i-a)/(m-a)
+            elif i>m and i<=b:
+                t1fs.dom[i]=(b-i)/(b-m)
+            else:
+                t1fs.dom[i]=0            
 
         return t1fs
 
@@ -159,6 +177,13 @@ class FuzzySet:
                           res=self.res)
         result.dom = None
         # Write your code below
+        result.dom=np.zeros(self.domain.shape)
+        for i in range(len(self.domain)-1):
+            result.dom[i]=max(self.dom[i],f_set.dom[i])
+
+
+
+        
 
         return result
 
@@ -178,6 +203,10 @@ class FuzzySet:
         result.dom = None
         # Write your code below
 
+        result.dom=np.zeros(self.domain.shape)
+        for i in range(len(self.domain)-1):
+            result.dom[i]=min(self.dom[i],f_set.dom[i])
+            
         return result
 
     def complement(self) -> Any:
@@ -194,6 +223,9 @@ class FuzzySet:
                           res=self.res)
         result.dom = None
         # Write your code below
+        result.dom=np.zeros(self.domain.shape)
+        for i in range(len(self.domain)-1):
+            result.dom[i]=1-self.dom[i]
 
         return result
 

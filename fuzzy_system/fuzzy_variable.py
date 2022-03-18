@@ -1,5 +1,6 @@
 from typing import Any
 from .fuzzy_set import FuzzySet
+import matplotlib.pyplot as plt
 
 
 class FuzzyVariable:
@@ -21,6 +22,7 @@ class FuzzyVariable:
         self.res = res
         self.name = name
 
+    
     def __str__(self) -> None:
         return ', '.join(self.sets.keys())
 
@@ -32,6 +34,7 @@ class FuzzyVariable:
         :param f_set: the fuzzy set
         """
         # write code below
+        
 
         pass
 
@@ -42,8 +45,9 @@ class FuzzyVariable:
         :param name: set name
         """
         # Write your code below
-
-        pass
+        return(self.name)
+              
+        
 
     def add_triangular(self, name: str, low: float, mid: float, high: float) -> Any:
         """

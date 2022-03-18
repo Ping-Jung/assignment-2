@@ -5,7 +5,7 @@ class FuzzyVariableInput(FuzzyVariable):
 
     def __init__(self, name: str, min_val: float, max_val: float, res: float) -> None:
         super().__init__(name, min_val, max_val, res)
-
+     
     def fuzzify(self, value: float) -> None:
         """
         Performs fuzzification of the variable. used when the variable is an input one
