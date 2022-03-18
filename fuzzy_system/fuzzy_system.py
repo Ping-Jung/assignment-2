@@ -1,4 +1,5 @@
 from typing import Any
+from fuzzy_system.fuzzy_variable import FuzzyVariable
 from .fuzzy_rule import FuzzyRule
 from .fuzzy_variable_output import FuzzyVariableOutput
 from .fuzzy_variable_input import FuzzyVariableInput
@@ -61,6 +62,10 @@ class FuzzySystem:
         :param variable: the input fuzzy variable
         """
         # Write the code below
+        self.input_variables[variable.__class__.name]=FuzzyVariable.get_set(variable)
+        print(self.input_variables)
+        
+
 
         pass
 

@@ -83,13 +83,15 @@ class FuzzySet:
         #
         #t1fs.dom = None
         # Write your code below
+    
         for i in range(len(t1fs.domain)-1):
-            if i<a or i>d:
+            nox=t1fs.domain[i]
+            if nox<a or nox>d:
                 t1fs.dom[i]=0
-            elif i>=a and i<=b:
-                t1fs.dom[i]=(i-a)/(b-a)
-            elif i>=c and i<=d:
-                t1fs.dom[i]=(d-i)/(d-c) 
+            elif nox>=a and nox<=b:
+                t1fs.dom[i]=(nox-a)/(b-a)
+            elif nox>=c and nox<=d:
+                t1fs.dom[i]=(d-nox)/(d-c) 
             else:
                 t1fs.dom[i]=1           
               
@@ -125,13 +127,15 @@ class FuzzySet:
         #
         #t1fs.dom = None
         # write your code below
-        for i in range(len(t1fs.domain)-1):
-            if i<=a:
+
+        for i in range(res):
+            nox=t1fs.domain[i]
+            if  nox<a:
                 t1fs.dom[i]=0
-            elif i>a and i<=m:
-                t1fs.dom[i]=(i-a)/(m-a)
-            elif i>m and i<=b:
-                t1fs.dom[i]=(b-i)/(b-m)
+            elif nox>=a and nox<=m:
+                t1fs.dom[i]=(nox-a)/(m-a)
+            elif nox>m and nox<=b:
+                t1fs.dom[i]=(b-nox)/(b-m)
             else:
                 t1fs.dom[i]=0            
 

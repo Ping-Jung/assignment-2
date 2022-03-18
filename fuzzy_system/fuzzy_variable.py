@@ -34,10 +34,13 @@ class FuzzyVariable:
         :param f_set: the fuzzy set
         """
         # write code below
+        self.sets[name]=f_set
+        print(self.sets.items())
         
-
         pass
-
+        
+     
+       
     def get_set(self, name: str) -> Any:
         """
         TODO:
@@ -45,7 +48,10 @@ class FuzzyVariable:
         :param name: set name
         """
         # Write your code below
-        return(self.name)
+        ## not working
+
+        
+        return self.sets
               
         
 
@@ -60,7 +66,8 @@ class FuzzyVariable:
         """
         new_set = None
         # write the code below
-
+        new_set=FuzzySet.create_triangular(name,self.min_val,self.max_val,self.res,low,mid,high)
+        self.add_set(name,new_set)
         return new_set
 
     def add_trapezoidal(self, name: str, a: float, b: float, c: float, d: float) -> Any:
@@ -75,7 +82,8 @@ class FuzzyVariable:
         """
         new_set = None
         # Write your code below
-
+        new_set=FuzzySet.create_trapezoidal(name,self.min_val,self.max_val,self.res,a,b,c,d)
+        self.add_set(name,new_set)
         return new_set
 
     def plot_variable(self, ax: Any = None, show: bool = True) -> None:
