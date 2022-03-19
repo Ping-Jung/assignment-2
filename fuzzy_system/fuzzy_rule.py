@@ -36,8 +36,13 @@ class FuzzyRule:
         :param f_set: another fuzzy set
         """
         # Write your code below
+        print(var," ",f_set)
+        alist=[var,f_set]
+        self.antecedents.append(alist)
+        print(self.antecedents)
 
         pass
+    
 
     def add_consequent_clause(self, var: Any, f_set: Any) -> None:
         """
@@ -49,6 +54,7 @@ class FuzzyRule:
         :param f_set: another fuzzy set
         """
         # Write your code below
+        self.consequents
 
         pass
 

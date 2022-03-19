@@ -62,11 +62,8 @@ class FuzzySystem:
         :param variable: the input fuzzy variable
         """
         # Write the code below
-        self.input_variables[variable.__class__.name]=FuzzyVariable.get_set(variable)
+        self.input_variables.update({variable.name:variable})
         print(self.input_variables)
-        
-
-
         pass
 
     def add_output_variable(self, variable: Any) -> None:
@@ -76,7 +73,8 @@ class FuzzySystem:
         :param variable: the output fuzzy variable
         """
         # Write the code below
-
+        self.output_variables.update({variable.name:variable})
+        print(self.output_variables)
         pass
 
     def get_input_variable(self, name: str) -> Any:
@@ -86,8 +84,8 @@ class FuzzySystem:
         :param name: name of variable
         """
         # Write your code below
-
-        pass
+        return self.input_variables[name]
+        
 
     def get_output_variable(self, name: str) -> Any:
         """
@@ -96,8 +94,8 @@ class FuzzySystem:
         :param name: name of variable
         """
         # Write your code below
+        return self.output_variables[name]
 
-        pass
 
     def clear_output_distributions(self) -> None:
         """
@@ -115,7 +113,14 @@ class FuzzySystem:
         # create a new rule
         new_rule = FuzzyRule()
         # Write your code below
-
+        print(antecedent_clauses)
+        print(consequent_clauses)
+        print(antecedent_clauses.key)
+        a=antecedent_clauses["Temperature"]
+        b=antecedent_clauses["Humidity"]
+        new_rule.add_antecedent_clause("Temperature",a)
+        new_rule.add_antecedent_clause("Humidity",b)
+        new_rule.add_consequent_clause(consequent_clauses)
         pass
 
     def evaluate_output(self, input_values: Any) -> Any:

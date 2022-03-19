@@ -35,7 +35,7 @@ class FuzzyVariable:
         """
         # write code below
         self.sets[name]=f_set
-        print(self.sets.items())
+        print(self.sets)
         
         pass
         
@@ -50,8 +50,7 @@ class FuzzyVariable:
         # Write your code below
         ## not working
 
-        
-        return self.sets
+        return self.sets[name]
               
         
 
