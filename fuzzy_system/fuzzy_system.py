@@ -62,9 +62,9 @@ class FuzzySystem:
         :param variable: the input fuzzy variable
         """
         # Write the code below
-        print(variable.name)
+        #print(variable.name)
         self.input_variables.update({variable.name:variable})
-        print(self.input_variables)
+        #print(self.input_variables)
         pass
 
     def add_output_variable(self, variable:FuzzyVariableInput) -> None:
