@@ -45,28 +45,29 @@ class FuzzySystem:
                 IF [antecedent clauses] THEN [consequent clauses]
         """
         ret_str = 'Input: \n'
-        for n, s in self._input_variables.items():
+        for n, s in self.input_variables.items():
             ret_str = ret_str + f'{n}: ({s})\n'
         ret_str = ret_str + 'Output: \n'
-        for n, s in self._output_variables.items():
+        for n, s in self.output_variables.items():
             ret_str = ret_str + f'{n}: ({s})\n'
         ret_str = ret_str + 'Rules: \n'
-        for rule in self._rules:
+        for rule in self.rules:
             ret_str = ret_str + f'{rule}\n'
         return ret_str
 
-    def add_input_variable(self, variable: Any) -> None:
+    def add_input_variable(self, variable:FuzzyVariableInput) -> None:
         """
         TODO:
          Add an input variable to the system
         :param variable: the input fuzzy variable
         """
         # Write the code below
+        print(variable.name)
         self.input_variables.update({variable.name:variable})
         print(self.input_variables)
         pass
 
-    def add_output_variable(self, variable: Any) -> None:
+    def add_output_variable(self, variable:FuzzyVariableInput) -> None:
         """
         TODO:
          Add an output variable to the system
@@ -74,7 +75,7 @@ class FuzzySystem:
         """
         # Write the code below
         self.output_variables.update({variable.name:variable})
-        print(self.output_variables)
+        #print(self.output_variables)
         pass
 
     def get_input_variable(self, name: str) -> Any:
@@ -110,27 +111,32 @@ class FuzzySystem:
         :param antecedent_clauses: a dict of clause, having the form {variable_name: set_name, ...}
         :param consequent_clauses: having the form {variable_name: set_name, ...}
         """
-        print()
+
         # create a new rule
         new_rule = FuzzyRule()
         # Write your code below
         # add antecedent clauses
+       
         for var_name, set_name in antecedent_clauses.items():
             # write your code here
             # get the input variable and corresponding fuzzy set for the antecedent clause
             # and then add the clause to `new_rule`
             varb=self.get_input_variable(var_name)
             #print(type(varb))
-
+        
             fuzzset=varb.get_set(set_name)
             #print(type(fuzzset))
+            #print(var_name," ",set_name)
 
             new_rule.add_antecedent_clause(varb,fuzzset)
+           
+            
 
-            pass
 
             # add consequent clauses
-            for var_name, set_name in consequent_clauses.items():
+         
+        
+        for var_name, set_name in consequent_clauses.items():
                 # write your code here
                 # get the output variable and corresponding fuzzy set for the consequent clause
                 # and then add the clause to `new_rule`
@@ -141,9 +147,12 @@ class FuzzySystem:
                 #print(type(outfuzzset))
 
                 new_rule.add_consequent_clause(outvarb,outfuzzset)
+       
+        #print(new_rule)
 
+        self.rules.append(new_rule)
 
-                pass
+                
 
         # add the new rule
         pass
@@ -160,9 +169,12 @@ class FuzzySystem:
         self.clear_output_distributions()
         # Fuzzify the inputs. The degree of membership will be stored in each set
         for input_name, input_value in input_values.items():
+            #print("1.:",input_name)
             self.input_variables[input_name].fuzzify(input_value)
         # evaluate rules
+        #print(self.rules)
         for rule in self.rules:
+            #print(rule)
             rule.evaluate()
         # finally, defuzzify all output distributions to get the crisp outputs
         output = {}

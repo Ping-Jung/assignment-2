@@ -38,9 +38,10 @@ class FuzzyRule:
         """
         # Write your code below
         #print(var," ",f_set)
-        alist=[var,f_set]
-        self.antecedents.append(alist)
-        print(self.antecedents)
+        clause=FuzzyClause(var,f_set)
+        self.antecedents.append(clause)
+        #print(self.antecedents)
+       
 
         pass
     
@@ -48,17 +49,17 @@ class FuzzyRule:
     def add_consequent_clause(self, var: FuzzyVariable, f_set:FuzzySet) -> None:
         """
         TODO:
-         Creat new consequent clause with variable `var` and fuzzy set `f_set` using FuzzyClause.
-         Adds an consequent clause to the consequent list.
+        Creat new consequent clause with variable `var` and fuzzy set `f_set` using FuzzyClause.
+        Adds an consequent clause to the consequent list.
         Adds a consequent clause to the rule
         :param var: the clause variable in 'variable is set'
         :param f_set: another fuzzy set
         """
         # Write your code below
         #print(var," ",f_set)
-        alist=[var,f_set]
-        self.consequents.append(alist)
-        print(self.consequents)
+        clause=FuzzyClause(var,f_set)
+        self.consequents.append(clause)
+
 
         pass
 
@@ -75,6 +76,7 @@ class FuzzyRule:
         # execute all antecedent clauses, keeping the minimum of the
         # returned doms to determine the rule strength
         for ante_clause in self.antecedents:
+            #print("ante_clause",ante_clause)
             rule_strength = min(ante_clause.evaluate_antecedent(), rule_strength)
         # execute consequent clauses, each output variable will update its output_distribution set
         for consequent_clause in self.consequents:

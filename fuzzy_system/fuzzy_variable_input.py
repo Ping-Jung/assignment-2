@@ -12,6 +12,7 @@ class FuzzyVariableInput(FuzzyVariable):
         """
         # get dom for each set and store it - it will be required for each rule
         for set_name, f_set in self.sets.items():
+            #print(set_name,f_set[value])
             f_set.last_dom_value = f_set[value]
 
     def fuzzify_info(self, value: float) -> str:

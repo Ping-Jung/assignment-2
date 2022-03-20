@@ -84,7 +84,7 @@ class FuzzySet:
         #t1fs.dom = None
         # Write your code below
     
-        for i in range(len(t1fs.domain)-1):
+        for i in range(len(t1fs.domain)):
             nox=t1fs.domain[i]
             if nox<a or nox>d:
                 t1fs.dom[i]=0
@@ -182,12 +182,9 @@ class FuzzySet:
         result.dom = None
         # Write your code below
         result.dom=np.zeros(self.domain.shape)
-        for i in range(len(self.domain)-1):
+        for i in range(len(self.domain)):
             result.dom[i]=max(self.dom[i],f_set.dom[i])
 
-
-
-        
 
         return result
 
@@ -239,10 +236,17 @@ class FuzzySet:
          Implement the defuzzification using center-of-area or center-of-gravity
         :return: crisp quantities
         """
+        #print(self)
         result = None
         # write your code below
-        
-
+        area_sum=0
+        areatimesx_sum=0
+        for i in  range(len(self.domain)):
+            #print(self.dom[i]," ",self.domain[i])
+            area_sum=area_sum+self.dom[i]
+            areatimesx_sum=areatimesx_sum+self.domain[i]*self.dom[i]
+         
+        result=areatimesx_sum/area_sum
 
         return result
 

@@ -48,8 +48,9 @@ class FuzzyClause:
         """
         Used when set is antecedent, it returns the set degree of membership.
         :return: the set degree of membership given a value for that variable.
-                    This value is determined at an earlier stage and stored in the set
+                    This value is determined at an earlier stage and stored in the set       
         """
+        print("last_dom_value",self.f_set.last_dom_value)
         return self.f_set.last_dom_value
 
     def evaluate_consequent(self, dom: Any) -> None:

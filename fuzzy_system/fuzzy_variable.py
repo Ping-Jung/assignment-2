@@ -26,16 +26,16 @@ class FuzzyVariable:
     def __str__(self) -> None:
         return ', '.join(self.sets.keys())
 
-    def add_set(self, name: str, f_set: Any) -> None:
+    def add_set(self, name: str, f_set: FuzzySet) -> None:
         """
         TODO:
-         Adds a fuzzy set into sets dictionary of the variable
+         Adds FuzzySet `f_set` into dictionary `self.sets` with key `name`
         :param name: name of the set
         :param f_set: the fuzzy set
         """
         # write code below
         self.sets[name]=f_set
-        print(self.sets)
+        
         
         pass
         
