@@ -103,24 +103,49 @@ class FuzzySystem:
         """
         map(lambda output_var: output_var.clear_output_distribution(), self.output_variables.values())
 
-    def add_rule(self, antecedent_clauses: Any, consequent_clauses: Any) -> None:
+    def add_rule(self, antecedent_clauses: dict, consequent_clauses: dict) -> None:
         """
         TODO:
          Adds a new rule to the system.
         :param antecedent_clauses: a dict of clause, having the form {variable_name: set_name, ...}
         :param consequent_clauses: having the form {variable_name: set_name, ...}
         """
+        print()
         # create a new rule
         new_rule = FuzzyRule()
         # Write your code below
-        print(antecedent_clauses)
-        print(consequent_clauses)
-        print(antecedent_clauses.key)
-        a=antecedent_clauses["Temperature"]
-        b=antecedent_clauses["Humidity"]
-        new_rule.add_antecedent_clause("Temperature",a)
-        new_rule.add_antecedent_clause("Humidity",b)
-        new_rule.add_consequent_clause(consequent_clauses)
+        # add antecedent clauses
+        for var_name, set_name in antecedent_clauses.items():
+            # write your code here
+            # get the input variable and corresponding fuzzy set for the antecedent clause
+            # and then add the clause to `new_rule`
+            varb=self.get_input_variable(var_name)
+            #print(type(varb))
+
+            fuzzset=varb.get_set(set_name)
+            #print(type(fuzzset))
+
+            new_rule.add_antecedent_clause(varb,fuzzset)
+
+            pass
+
+            # add consequent clauses
+            for var_name, set_name in consequent_clauses.items():
+                # write your code here
+                # get the output variable and corresponding fuzzy set for the consequent clause
+                # and then add the clause to `new_rule`
+                outvarb=self.get_output_variable(var_name)
+                #print(type(outvarb))
+
+                outfuzzset=outvarb.get_set(set_name)
+                #print(type(outfuzzset))
+
+                new_rule.add_consequent_clause(outvarb,outfuzzset)
+
+
+                pass
+
+        # add the new rule
         pass
 
     def evaluate_output(self, input_values: Any) -> Any:

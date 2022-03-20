@@ -41,16 +41,18 @@ class FuzzyVariable:
         
      
        
-    def get_set(self, name: str) -> Any:
+    def get_set(self, name: str) -> FuzzySet:
         """
         TODO:
          Return a fuzzy set given the name
         :param name: set name
         """
+        f_set = None
         # Write your code below
         ## not working
+        f_set=self.sets[name]
 
-        return self.sets[name]
+        return f_set
               
         
 

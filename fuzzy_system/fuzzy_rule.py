@@ -1,6 +1,7 @@
 from typing import Any
+from .fuzzy_variable import FuzzyVariable
+from .fuzzy_set import FuzzySet
 from .fuzzy_clause import FuzzyClause
-
 
 class FuzzyRule:
     """
@@ -27,7 +28,7 @@ class FuzzyRule:
         cons = ' and '.join(map(str, self.consequents))
         return f'IF {ante} THEN {cons}'
 
-    def add_antecedent_clause(self, var: Any, f_set: Any) -> None:
+    def add_antecedent_clause(self, var: FuzzyVariable, f_set: FuzzySet) -> None:
         """
         TODO:
          Creat new antecedent clause with variable `var` and fuzzy set `f_set` using FuzzyClause.
@@ -36,7 +37,7 @@ class FuzzyRule:
         :param f_set: another fuzzy set
         """
         # Write your code below
-        print(var," ",f_set)
+        #print(var," ",f_set)
         alist=[var,f_set]
         self.antecedents.append(alist)
         print(self.antecedents)
@@ -44,7 +45,7 @@ class FuzzyRule:
         pass
     
 
-    def add_consequent_clause(self, var: Any, f_set: Any) -> None:
+    def add_consequent_clause(self, var: FuzzyVariable, f_set:FuzzySet) -> None:
         """
         TODO:
          Creat new consequent clause with variable `var` and fuzzy set `f_set` using FuzzyClause.
@@ -54,7 +55,10 @@ class FuzzyRule:
         :param f_set: another fuzzy set
         """
         # Write your code below
-        self.consequents
+        #print(var," ",f_set)
+        alist=[var,f_set]
+        self.consequents.append(alist)
+        print(self.consequents)
 
         pass
 
