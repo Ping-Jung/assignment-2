@@ -152,8 +152,7 @@ class FuzzySystem:
 
         self.rules.append(new_rule)
 
-                
-
+            
         # add the new rule
         pass
 

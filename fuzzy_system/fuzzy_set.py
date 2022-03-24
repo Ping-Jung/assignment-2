@@ -2,6 +2,7 @@ from typing import Any
 from numpy.typing import NDArray
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
 
 class FuzzySet:
@@ -128,13 +129,13 @@ class FuzzySet:
         #t1fs.dom = None
         # write your code below
 
-        for i in range(res):
+        for i in range(len(t1fs.domain)):
             nox=t1fs.domain[i]
             if  nox<a:
                 t1fs.dom[i]=0
             elif nox>=a and nox<=m:
                 t1fs.dom[i]=(nox-a)/(m-a)
-            elif nox>m and nox<=b:
+            elif nox>m and nox<b:
                 t1fs.dom[i]=(b-nox)/(b-m)
             else:
                 t1fs.dom[i]=0            
@@ -236,19 +237,61 @@ class FuzzySet:
          Implement the defuzzification using center-of-area or center-of-gravity
         :return: crisp quantities
         """
-        #print(self)
         result = None
         # write your code below
         area_sum=0
         areatimesx_sum=0
+        
+
+        #cog method
         for i in  range(len(self.domain)):
             #print(self.dom[i]," ",self.domain[i])
+            print(i)
             area_sum=area_sum+self.dom[i]
             areatimesx_sum=areatimesx_sum+self.domain[i]*self.dom[i]
          
         result=areatimesx_sum/area_sum
+        
+        '''
+        # try a  new way of defuzzification (Max-Membership Principle)
+        biggest_x=0
+        biggest_value=0
+       
+        for i in range(len(self.domain)):
+             print(self.domain[i]," ",self.dom[i])
+             if self.dom[i]>biggest_value:
+                 biggest_value=self.dom[i]
+                 biggest_x=self.domain[i]
 
+        result=biggest_x
+        
+
+        
+
+        # try a new way of defuzzification (Max-Membership Principle)
+        biggest_x1=0
+        biggest_x2=0
+        biggest_value=0
+
+        for i in range(len(self.domain)):
+             print(self.domain[i]," ",self.dom[i])
+             if self.dom[i]>biggest_value:
+                 biggest_value=self.dom[i]
+                 biggest_x1=self.domain[i]
+             if self.dom[i-1]==biggest_value and self.dom[i]<biggest_value:
+                 biggest_x2=self.domain[i]
+
+
+        result=0.5*(biggest_x1+biggest_x2)
+        plt.scatter(self.domain,self.dom)
+        plt.xticks(np.arange(min(self.domain), max(self.domain)+1, 5))
+        plt.xlabel('output.domain')
+        plt.ylabel('output.dom')
+        plt.show()
+
+        '''
         return result
+ 
 
     def get_domain_elements(self) -> NDArray:
         """
